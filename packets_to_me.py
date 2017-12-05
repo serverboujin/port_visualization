@@ -17,7 +17,7 @@ promiscuous = False
 read_timeout = 100 # in milliseconds
 pc = pcapy.open_live(INTERFACE, max_bytes, promiscuous, read_timeout)
  
-pc.setfilter('ip')	# Filter
+pc.setfilter('ip')  # Filter
  
 # callback for received packets
 def recv_pkts(hdr, data):
@@ -39,19 +39,19 @@ def recv_pkts(hdr, data):
   print(dport)
   global canvas
   for i in range(5):
-		for j in range(5):
-			if((dst == TARGET_IP) and (dport == num[j][i])):
-				canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='yellow')
-				time.sleep(0.2)
-				canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='white')
-				canvas.create_text(i*50+45,j*50+45,text=num[j][i],font=('FixedSys',10),justify='center')
-			elif((dst == TARGET_IP) and (dport != num[j][i])):
-				canvas.create_rectangle(4*50+20,4*50+20,4*50+50+20,4*50+50+20,fill='lightgray')
-				time.sleep(0.2)
-				canvas.create_rectangle(4*50+20,4*50+20,4*50+50+20,4*50+50+20,fill='white')
-				canvas.create_text(4*50+45,4*50+45,text=num[4][4],font=('FixedSys',10),justify='center')
-			canvas.pack()
-			canvas.update()
+    for j in range(5):
+      if((dst == TARGET_IP) and (dport == num[j][i])):
+        canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='yellow')
+        time.sleep(0.2)
+        canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='white')
+        canvas.create_text(i*50+45,j*50+45,text=num[j][i],font=('FixedSys',10),justify='center')
+      elif((dst == TARGET_IP) and (dport != num[j][i])):
+        canvas.create_rectangle(4*50+20,4*50+20,4*50+50+20,4*50+50+20,fill='lightgray')
+        time.sleep(0.2)
+        canvas.create_rectangle(4*50+20,4*50+20,4*50+50+20,4*50+50+20,fill='white')
+        canvas.create_text(4*50+45,4*50+45,text=num[4][4],font=('FixedSys',10),justify='center')
+      canvas.pack()
+      canvas.update()
 
 packet_limit = -1 # infinite
 
@@ -99,8 +99,8 @@ root.geometry("500x500")
 canvas = Tkinter.Canvas(root, width = 500, height = 500)
 canvas.place(x=0, y=0)
 for i in range(5):
-	for j in range(5):
-		canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='white')
-		canvas.create_text(i*50+45,j*50+45,text=num[j][i],font=('FixedSys',10),justify='center')
+  for j in range(5):
+    canvas.create_rectangle(i*50+20,j*50+20,i*50+50+20,j*50+50+20,fill='white')
+    canvas.create_text(i*50+45,j*50+45,text=num[j][i],font=('FixedSys',10),justify='center')
 
 root.mainloop()
